@@ -115,7 +115,7 @@
             {% for co in content %}
             {% if co.channel_name == channel %}
 
-            <p class="font-weight-bold">{{ co.text }}</p>
+            <p class="font-weight-bold"><strong>{{ co.text }}</strong></p>
 
             {% if co.file %}
             <p style="text-align: center;"><a><embed width="80%" height="800" src="{{ co.file.url }}"

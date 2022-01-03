@@ -44,6 +44,9 @@
             border-radius: 0;
             margin-bottom: 40px;
             box-shadow: 1px 1px 3px rgba(253, 244, 244, 0.1);
+        .content {
+            
+        }
 }
 
 
@@ -110,12 +113,32 @@
                     </div>
 
                 </div>
+
+
             </nav>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                  <input type="hidden" id="id_channel_name" name="channel_name" value="{{ channel.id }}">
+                  <label for="text">Example text area</label>
+                  <textarea class="form-control" name="text" id="id_text" rows="3"></textarea>
+
+                  <button type="submit" class="btn btn-success">
+                  <i class="fas fa-location-arrow"></i>
+                  </button>
+
+                  File: <input type="file" name="file" id="id_file" >
+                  Image: <input type="file" name="image" accept="image/*" id="id_image">
+
+              </form>
 
             {% for co in content %}
             {% if co.channel_name == channel %}
 
-            <p class="font-weight-bold">{{ co.text }}</p>
+            <p class="lead">
+                {{ co.text }}
+            </p>
 
             {% if co.file %}
             <p style="text-align: center;"><a><embed width="80%" height="800" src="{{ co.file.url }}"
@@ -135,23 +158,6 @@
 
             {% endif %}
             {% endfor %}
-
-
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-
-                <input type="hidden" id="id_channel_name" name="channel_name" value="{{ channel.id }}">
-                <label for="text">Example text area</label>
-                <textarea class="form-control" name="text" id="id_text" rows="3"></textarea>
-
-                <button type="submit" class="btn btn-success">
-                <i class="fas fa-location-arrow"></i>
-                </button>
-
-                File: <input type="file" name="file" id="id_file" >
-                Image: <input type="file" name="image" accept="image/*" id="id_image">
-
-            </form>
 
         </div>
 
